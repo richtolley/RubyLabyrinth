@@ -1,0 +1,224 @@
+{
+  "38b1abdf-7d20-4d9e-83cd-92fc030c2128": {
+    "Exits": [
+      "/Maze/Location/easy/1c28e194-91ce-4a2b-8385-e1cc95e8f4ba"
+    ],
+    "LocationId": "38b1abdf-7d20-4d9e-83cd-92fc030c2128",
+    "LocationType": "Start"
+  },
+  "1c28e194-91ce-4a2b-8385-e1cc95e8f4ba": {
+    "Exits": [
+      "/Maze/Location/easy/c22083a6-3b8d-46f5-9947-8e970f222ae4",
+      "/Maze/Location/easy/38b1abdf-7d20-4d9e-83cd-92fc030c2128"
+    ],
+    "LocationId": "1c28e194-91ce-4a2b-8385-e1cc95e8f4ba",
+    "LocationType": "Normal"
+  },
+  "c22083a6-3b8d-46f5-9947-8e970f222ae4": {
+    "Exits": [
+      "/Maze/Location/easy/8e52fda0-2313-4927-9b42-28c5f7212b24",
+      "/Maze/Location/easy/1c28e194-91ce-4a2b-8385-e1cc95e8f4ba"
+    ],
+    "LocationId": "c22083a6-3b8d-46f5-9947-8e970f222ae4",
+    "LocationType": "Normal"
+  },
+  "8e52fda0-2313-4927-9b42-28c5f7212b24": {
+    "Exits": [
+      "/Maze/Location/easy/c22083a6-3b8d-46f5-9947-8e970f222ae4",
+      "/Maze/Location/easy/a28792c7-e978-47a4-8e95-3cfa58d38fc9"
+    ],
+    "LocationId": "8e52fda0-2313-4927-9b42-28c5f7212b24",
+    "LocationType": "Normal"
+  },
+  "a28792c7-e978-47a4-8e95-3cfa58d38fc9": {
+    "Exits": [
+      "/Maze/Location/easy/8e52fda0-2313-4927-9b42-28c5f7212b24",
+      "/Maze/Location/easy/5f9b6951-8b93-4ea8-830e-2992d660ddd7",
+      "/Maze/Location/easy/683d1957-0a9a-48c8-ab21-6505c0e07c33"
+    ],
+    "LocationId": "a28792c7-e978-47a4-8e95-3cfa58d38fc9",
+    "LocationType": "Normal"
+  },
+  "5f9b6951-8b93-4ea8-830e-2992d660ddd7": {
+    "Exits": [
+      "/Maze/Location/easy/a28792c7-e978-47a4-8e95-3cfa58d38fc9",
+      "/Maze/Location/easy/03419c64-fa72-40a6-90bf-8f61b48c5d67"
+    ],
+    "LocationId": "5f9b6951-8b93-4ea8-830e-2992d660ddd7",
+    "LocationType": "Normal"
+  },
+  "03419c64-fa72-40a6-90bf-8f61b48c5d67": {
+    "Exits": [
+      "/Maze/Location/easy/5f9b6951-8b93-4ea8-830e-2992d660ddd7",
+      "/Maze/Location/easy/ccb4dd55-d23b-48d6-8d04-fc973d7bc4d4"
+    ],
+    "LocationId": "03419c64-fa72-40a6-90bf-8f61b48c5d67",
+    "LocationType": "Normal"
+  },
+  "ccb4dd55-d23b-48d6-8d04-fc973d7bc4d4": {
+    "Exits": [
+      "/Maze/Location/easy/03419c64-fa72-40a6-90bf-8f61b48c5d67"
+    ],
+    "LocationId": "ccb4dd55-d23b-48d6-8d04-fc973d7bc4d4",
+    "LocationType": "Normal"
+  },
+  "683d1957-0a9a-48c8-ab21-6505c0e07c33": {
+    "Exits": [
+      "/Maze/Location/easy/d9bd0268-9ceb-4c19-8d9b-e26d54491369",
+      "/Maze/Location/easy/a28792c7-e978-47a4-8e95-3cfa58d38fc9"
+    ],
+    "LocationId": "683d1957-0a9a-48c8-ab21-6505c0e07c33",
+    "LocationType": "Normal"
+  },
+  "d9bd0268-9ceb-4c19-8d9b-e26d54491369": {
+    "Exits": [
+      "/Maze/Location/easy/8902e24f-1b9f-4856-b99a-c1875a6c14e9",
+      "/Maze/Location/easy/8eeb9cc2-1f73-4b23-9bfb-53814247be0b",
+      "/Maze/Location/easy/683d1957-0a9a-48c8-ab21-6505c0e07c33"
+    ],
+    "LocationId": "d9bd0268-9ceb-4c19-8d9b-e26d54491369",
+    "LocationType": "Normal"
+  },
+  "8902e24f-1b9f-4856-b99a-c1875a6c14e9": {
+    "Exits": [
+      "/Maze/Location/easy/d9bd0268-9ceb-4c19-8d9b-e26d54491369",
+      "/Maze/Location/easy/3d1b9ebb-0500-4837-ba17-2485481be609"
+    ],
+    "LocationId": "8902e24f-1b9f-4856-b99a-c1875a6c14e9",
+    "LocationType": "Normal"
+  },
+  "3d1b9ebb-0500-4837-ba17-2485481be609": {
+    "Exits": [
+      "/Maze/Location/easy/8902e24f-1b9f-4856-b99a-c1875a6c14e9",
+      "/Maze/Location/easy/2c5b3356-f730-4755-8396-c7bea8ea9f84"
+    ],
+    "LocationId": "3d1b9ebb-0500-4837-ba17-2485481be609",
+    "LocationType": "Normal"
+  },
+  "2c5b3356-f730-4755-8396-c7bea8ea9f84": {
+    "Exits": [
+      "/Maze/Location/easy/3d1b9ebb-0500-4837-ba17-2485481be609",
+      "/Maze/Location/easy/c9b66b44-50fe-459d-a10b-8e56ffac35f7"
+    ],
+    "LocationId": "2c5b3356-f730-4755-8396-c7bea8ea9f84",
+    "LocationType": "Normal"
+  },
+  "c9b66b44-50fe-459d-a10b-8e56ffac35f7": {
+    "Exits": [
+      "/Maze/Location/easy/2c5b3356-f730-4755-8396-c7bea8ea9f84"
+    ],
+    "LocationId": "c9b66b44-50fe-459d-a10b-8e56ffac35f7",
+    "LocationType": "Normal"
+  },
+  "8eeb9cc2-1f73-4b23-9bfb-53814247be0b": {
+    "Exits": [
+      "/Maze/Location/easy/197811df-476e-4ecf-8991-5130856e7892",
+      "/Maze/Location/easy/129c8f07-b3dd-4e91-bf45-dbde8e837fc7",
+      "/Maze/Location/easy/d9bd0268-9ceb-4c19-8d9b-e26d54491369"
+    ],
+    "LocationId": "8eeb9cc2-1f73-4b23-9bfb-53814247be0b",
+    "LocationType": "Normal"
+  },
+  "197811df-476e-4ecf-8991-5130856e7892": {
+    "Exits": [
+      "/Maze/Location/easy/1d7a08dc-4ee9-4020-8366-e51d505060d1",
+      "/Maze/Location/easy/8eeb9cc2-1f73-4b23-9bfb-53814247be0b"
+    ],
+    "LocationId": "197811df-476e-4ecf-8991-5130856e7892",
+    "LocationType": "Normal"
+  },
+  "1d7a08dc-4ee9-4020-8366-e51d505060d1": {
+    "Exits": [
+      "/Maze/Location/easy/197811df-476e-4ecf-8991-5130856e7892"
+    ],
+    "LocationId": "1d7a08dc-4ee9-4020-8366-e51d505060d1",
+    "LocationType": "Normal"
+  },
+  "129c8f07-b3dd-4e91-bf45-dbde8e837fc7": {
+    "Exits": [
+      "/Maze/Location/easy/417ff10a-3f94-42a7-a6c3-6eeaa4285b4b",
+      "/Maze/Location/easy/8eeb9cc2-1f73-4b23-9bfb-53814247be0b"
+    ],
+    "LocationId": "129c8f07-b3dd-4e91-bf45-dbde8e837fc7",
+    "LocationType": "Normal"
+  },
+  "417ff10a-3f94-42a7-a6c3-6eeaa4285b4b": {
+    "Exits": [
+      "/Maze/Location/easy/14c0022c-e34a-45c8-85c8-53ab0059607e",
+      "/Maze/Location/easy/13032442-73ae-4fdd-bb46-6466e6553995",
+      "/Maze/Location/easy/69396813-8a2e-4a8e-be06-9e95d8faa218",
+      "/Maze/Location/easy/129c8f07-b3dd-4e91-bf45-dbde8e837fc7"
+    ],
+    "LocationId": "417ff10a-3f94-42a7-a6c3-6eeaa4285b4b",
+    "LocationType": "Normal"
+  },
+  "14c0022c-e34a-45c8-85c8-53ab0059607e": {
+    "Exits": [
+      "/Maze/Location/easy/46b280bc-32aa-4fca-b448-b84ca00a636d",
+      "/Maze/Location/easy/417ff10a-3f94-42a7-a6c3-6eeaa4285b4b"
+    ],
+    "LocationId": "14c0022c-e34a-45c8-85c8-53ab0059607e",
+    "LocationType": "Normal"
+  },
+  "46b280bc-32aa-4fca-b448-b84ca00a636d": {
+    "Exits": [
+      "/Maze/Location/easy/1f09365c-5f50-4ac4-9820-e15d462d0060",
+      "/Maze/Location/easy/14c0022c-e34a-45c8-85c8-53ab0059607e"
+    ],
+    "LocationId": "46b280bc-32aa-4fca-b448-b84ca00a636d",
+    "LocationType": "Normal"
+  },
+  "1f09365c-5f50-4ac4-9820-e15d462d0060": {
+    "Exits": [
+      "/Maze/Location/easy/46b280bc-32aa-4fca-b448-b84ca00a636d"
+    ],
+    "LocationId": "1f09365c-5f50-4ac4-9820-e15d462d0060",
+    "LocationType": "Normal"
+  },
+  "13032442-73ae-4fdd-bb46-6466e6553995": {
+    "Exits": [
+      "/Maze/Location/easy/417ff10a-3f94-42a7-a6c3-6eeaa4285b4b",
+      "/Maze/Location/easy/6e969613-d803-4049-99ba-05e40061445b"
+    ],
+    "LocationId": "13032442-73ae-4fdd-bb46-6466e6553995",
+    "LocationType": "Normal"
+  },
+  "6e969613-d803-4049-99ba-05e40061445b": {
+    "Exits": [
+      "/Maze/Location/easy/13032442-73ae-4fdd-bb46-6466e6553995",
+      "/Maze/Location/easy/eefeab34-9758-4a6a-a618-3b599e6b472a"
+    ],
+    "LocationId": "6e969613-d803-4049-99ba-05e40061445b",
+    "LocationType": "Normal"
+  },
+  "eefeab34-9758-4a6a-a618-3b599e6b472a": {
+    "Exits": [
+      "/Maze/Location/easy/6e969613-d803-4049-99ba-05e40061445b",
+      "/Maze/Location/easy/13b330d7-502c-498d-bbae-fe0026db8db9",
+      "/Maze/Location/easy/da03b598-e0f0-4e4e-854e-11928e61c4b6"
+    ],
+    "LocationId": "eefeab34-9758-4a6a-a618-3b599e6b472a",
+    "LocationType": "Normal"
+  },
+  "13b330d7-502c-498d-bbae-fe0026db8db9": {
+    "Exits": [
+      "/Maze/Location/easy/eefeab34-9758-4a6a-a618-3b599e6b472a"
+    ],
+    "LocationId": "13b330d7-502c-498d-bbae-fe0026db8db9",
+    "LocationType": "Normal"
+  },
+  "da03b598-e0f0-4e4e-854e-11928e61c4b6": {
+    "Exits": [
+      "/Maze/Location/easy/eefeab34-9758-4a6a-a618-3b599e6b472a"
+    ],
+    "LocationId": "da03b598-e0f0-4e4e-854e-11928e61c4b6",
+    "LocationType": "Exit"
+  },
+  "69396813-8a2e-4a8e-be06-9e95d8faa218": {
+    "Exits": [
+      "/Maze/Location/easy/417ff10a-3f94-42a7-a6c3-6eeaa4285b4b"
+    ],
+    "LocationId": "69396813-8a2e-4a8e-be06-9e95d8faa218",
+    "LocationType": "Normal"
+  }
+}
