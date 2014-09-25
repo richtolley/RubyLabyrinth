@@ -1,20 +1,22 @@
 load "maze_explorer.rb"
 require 'uri'
+require 'pry'
 class VirtualAnt
 
 	attr_accessor :path
 
-	def initialize start_node
+	def initialize start_node,maze
 		@current_location = start_node_id
 		@path = []
 		@path << start_node
-
+		@maze = maze
 	end
 
 	def move node_dict
 
 		potential_moves = node_dict["Exits"]
 		potential_moves.each do |move_id|
+
 
 
 
@@ -28,38 +30,61 @@ class VirtualAnt
 
 end
 
+class MazeNode
+
+	attr_accessor :location_id,:location_type,:exits
+
+	def initialize json_dict
+
+		@location_type = json_dict["LocationType"]
+		@location_id = json_dict["LocationId"]
+		
+		@exits = json_dict["Exits"].inject([]) do |acc,it|
+			acc << URI(it).path.split('/').last
+			acc
+		end
+
+	end
+
+end
+
 class Maze
 
 	attr_accessor :nodes,:edges
 
 	def initialize nodes
-		@nodes = nodes
-		@edges = setup_edges
-		@start_node = find_start_node 
+		
+		@nodes = nodes.values.inject({}) do |acc,it| 
+			key = it["LocationId"]
+			acc[key] = MazeNode.new(it) 	
+			acc 
+		end
+
+		@edges = setup_edges @nodes
+		#@start_node = find_start_node 
 	end
 
-	def find_start_node_id
+	def find_start_node
 		start_node = nil
 		@nodes.each_pair { |key,dict| start_id = dict if dict["LocationType"] == "Start" }
 		start_node 
 	end
 
-	def setup_edges
-		edges = {}
-		@nodes.each_pair do |key,dict|
-			dict["Exits"].each do |ex|
-				ex_id = URI(ex).path.split('/').last
-				key_pair = edge_key_for_nodes [key,ex_id]
-				edges[key_pair] = {"PheromoneLevel" => 0} if @edges[key_pair] == nil
+	def setup_edges nodes
+		
+		nodes.values.inject({}) do |acc,it|
+			
+			it.exits.each do |exit|
+				key_pair = edge_key_for_nodes [exit,it.location_id]
+				acc[key_pair] = {"PheromoneLevel" => 0} if acc[key_pair] == nil
 			end
+			acc
 		end
-		edges
 	end
 
 	def edge_key_for_nodes nodes
 		nodes.sort!
 		"#{nodes[0]},#{nodes[1]}"
-
 	end
 
 	def pheromone_level_on_edge from_node,to_node
@@ -68,7 +93,7 @@ class Maze
 		edge["PheromoneLevel"] ? edge["PheromoneLevel"] : nil
 	end
 
-	def deposit_pheromone_on_edge from_node_to_node,pheromone_amount
+	def deposit_pheromone_on_edge from_node,to_node,pheromone_amount
 		key = edge_key_for_nodes [from_node,to_node]
 		edge = @edges[key]
 		if edge
