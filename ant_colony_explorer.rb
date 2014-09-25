@@ -61,19 +61,19 @@ class Maze
 		end
 
 		@edges = setup_edges @nodes
-		#@start_node = find_start_node 
+		@start_node = find_single_node_of_type "Start"
+		@exit_node = find_single_node_of_type "Exit"
+		puts @start_node.location_id
+		puts @exit_node.location_id
 	end
 
-	def find_start_node
-		start_node = nil
-		@nodes.each_pair { |key,dict| start_id = dict if dict["LocationType"] == "Start" }
-		start_node 
+	def find_single_node_of_type type_name
+		@nodes.values.inject { |acc,node| acc = node if node.location_type == "Start"; acc }
 	end
 
 	def setup_edges nodes
 		
 		nodes.values.inject({}) do |acc,it|
-			
 			it.exits.each do |exit|
 				key_pair = edge_key_for_nodes [exit,it.location_id]
 				acc[key_pair] = {"PheromoneLevel" => 0} if acc[key_pair] == nil
