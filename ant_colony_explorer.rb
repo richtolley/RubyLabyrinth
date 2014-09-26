@@ -10,7 +10,7 @@ class VirtualAnt
 		@maze = maze
 		@path << @maze.start_node
 		state = "Starting"
-		@pheromone_total = 1000
+		@pheromone_total = 10
 
 	end
 
@@ -24,7 +24,7 @@ class VirtualAnt
 		else
 			moves = current_node.exits.inject([]) do |acc,exit|
 				number_of_votes = @maze.pheromone_level_on_edge current_node.location_id,exit
-				puts "Num votes #{number_of_votes}"
+				
 				number_of_votes.times { acc << exit }
 				acc 
 			end
@@ -48,17 +48,14 @@ class VirtualAnt
 		if @path.length == 0
 			puts "Cannot deposit pheromone on zero length path"
 		else
-			pheromone_per_step = @pheromone_total/@path.length
-
-
 			to_index = path.length-1
 			from_index = path.length-2
 
 			while from_index > 0
 				to_node_id = @path[to_index].location_id
 				from_node_id = @path[from_index].location_id
-
-				@maze.deposit_pheromone_on_edge from_node_id,to_node_id,pheromone_per_step
+				pheromone_amount = 1
+				@maze.deposit_pheromone_on_edge from_node_id,to_node_id,pheromone_amount
 				to_index -=1
 				from_index -=1
 			end
@@ -150,6 +147,12 @@ class Maze
 			puts "Error, no edge found for key #{key}"
 		end
 	end
+
+	def log_pheromone_levels
+		@edges.each_pair do |k,v|
+			puts "Node level is #{v["PheromoneLevel"]}"
+		end 
+	end
 end
 
 class AntColonyExplorer < MazeExplorer
@@ -173,14 +176,12 @@ class AntColonyExplorer < MazeExplorer
 			shortest_length = ants[0].path.length
 			ants.each { |ant| shortest_length = ant.path.length if ant.path.length < shortest_length and ant.state == "Finished" }
 			
-				
+			@maze.log_pheromone_levels
 	
 			puts "Generation #{generation} - shortest path was #{shortest_length}" 
 		end
 		
 	end
-
-	
 
 	def generate_the_ants number_of_ants
 		puts "Generating #{number_of_ants} Ant#{number_of_ants != 1 ? "s":""}"
