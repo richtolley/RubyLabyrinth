@@ -3,25 +3,66 @@ require 'uri'
 require 'pry'
 class VirtualAnt
 
-	attr_accessor :path
+	attr_accessor :path,:state
 
-	def initialize start_node,maze
-		@current_location = start_node_id
+	def initialize maze
 		@path = []
-		@path << start_node
 		@maze = maze
+		@path << @maze.start_node
+		state = "Starting"
+		@pheromone_total = 1000
+
 	end
 
-	def move node_dict
+	def move 
 
-		potential_moves = node_dict["Exits"]
-		potential_moves.each do |move_id|
+		current_node = @path.last
+		
+		if current_node.location_type == "Exit"
+			@state = "Finished"
 
+		else
+			moves = current_node.exits.inject([]) do |acc,exit|
+				number_of_votes = @maze.pheromone_level_on_edge current_node.location_id,exit
+				puts "Num votes #{number_of_votes}"
+				number_of_votes.times { acc << exit }
+				acc 
+			end
+			
+			new_node_id = moves[rand(moves.length)]
+			@path << @maze.nodes[new_node_id]
 
-
-
+			if @path.length <= @maze.nodes.length * 100
+				move
+			else 
+				@state = "Failed"
+				puts "Too many moves (#{@path.length})"
+			end
 		end
 
+	end
+
+	def deposit_pheromone
+
+		puts "Path length was #{@path.length}"
+		if @path.length == 0
+			puts "Cannot deposit pheromone on zero length path"
+		else
+			pheromone_per_step = @pheromone_total/@path.length
+
+
+			to_index = path.length-1
+			from_index = path.length-2
+
+			while from_index > 0
+				to_node_id = @path[to_index].location_id
+				from_node_id = @path[from_index].location_id
+
+				@maze.deposit_pheromone_on_edge from_node_id,to_node_id,pheromone_per_step
+				to_index -=1
+				from_index -=1
+			end
+		end
 	end
 
 	def probability_for_move_node move_node 
@@ -46,11 +87,15 @@ class MazeNode
 
 	end
 
+	def to_s
+		"Maze Node: id #{location_id},type#{location_type}"
+	end
+
 end
 
 class Maze
 
-	attr_accessor :nodes,:edges
+	attr_accessor :nodes,:edges,:start_node,:finish_node
 
 	def initialize nodes
 		
@@ -63,8 +108,6 @@ class Maze
 		@edges = setup_edges @nodes
 		@start_node = find_single_node_of_type "Start"
 		@exit_node = find_single_node_of_type "Exit"
-		puts @start_node.location_id
-		puts @exit_node.location_id
 	end
 
 	def find_single_node_of_type type_name
@@ -76,7 +119,7 @@ class Maze
 		nodes.values.inject({}) do |acc,it|
 			it.exits.each do |exit|
 				key_pair = edge_key_for_nodes [exit,it.location_id]
-				acc[key_pair] = {"PheromoneLevel" => 0} if acc[key_pair] == nil
+				acc[key_pair] = {"PheromoneLevel" => 1} if acc[key_pair] == nil
 			end
 			acc
 		end
@@ -87,14 +130,14 @@ class Maze
 		"#{nodes[0]},#{nodes[1]}"
 	end
 
-	def pheromone_level_on_edge from_node,to_node
-		key = edge_key_for_nodes [from_node,to_node]
+	def pheromone_level_on_edge from_node_id,to_node_id
+		key = edge_key_for_nodes [from_node_id,to_node_id]
 		edge = @edges[key]
 		edge["PheromoneLevel"] ? edge["PheromoneLevel"] : nil
 	end
 
-	def deposit_pheromone_on_edge from_node,to_node,pheromone_amount
-		key = edge_key_for_nodes [from_node,to_node]
+	def deposit_pheromone_on_edge from_node_id,to_node_id,pheromone_amount
+		key = edge_key_for_nodes [from_node_id,to_node_id]
 		edge = @edges[key]
 		if edge
 			current_level = edge["PheromoneLevel"]
@@ -113,20 +156,31 @@ class AntColonyExplorer < MazeExplorer
 
 	def initialize maze_file_path
 		
-		"Initialize Maze JSON file at #{maze_file_path} for exploration using Ant Colony pathfinding"
+		puts "Initializing Maze JSON file at #{maze_file_path} for exploration using Ant Colony pathfinding"
 		super maze_file_path
 		@maze = Maze.new @nodes	
+		ants = []
+
+		100.times do |generation|
+			ants = []
+			puts "Starting new ant colony simulation"
+			puts "Creating new ants"
+			100.times { ants << VirtualAnt.new(@maze) }
+			ants.each { |ant| ant.move }
+			puts "ants have moved"
+			ants.each { |ant| ant.deposit_pheromone if ant.state == "Finished" }
+			puts "ants have deposited pheromone"
+			shortest_length = ants[0].path.length
+			ants.each { |ant| shortest_length = ant.path.length if ant.path.length < shortest_length and ant.state == "Finished" }
+			
+				
+	
+			puts "Generation #{generation} - shortest path was #{shortest_length}" 
+		end
+		
 	end
 
 	
-
-	def find_start_node_id
-
-		start_id = nil
-		@nodes.each_pair { |key,dict| start_id = key if dict["LocationType"] == "Start" }
-		start_id
-
-	end
 
 	def generate_the_ants number_of_ants
 		puts "Generating #{number_of_ants} Ant#{number_of_ants != 1 ? "s":""}"
